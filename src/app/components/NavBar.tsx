@@ -21,7 +21,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'home', link: '/' },
-  { name: 'projects', link: '/projects' },
+  { name: 'projects', link: '/' },
   { name: 'education', link: '/education' },
   { name: 'experience', link: '/experience' },
 ];

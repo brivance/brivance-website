@@ -17,7 +17,7 @@ const ExperienceCard = ({ title, subtitle, description, moreInformation, image }
   const [isOpen, setIsOpen] = useState(false);
   return (
     <a
-      className="p-8 flex flex-col gap-8 justify-between items-center border border-gray-300 rounded-sm shadow-lg"
+      className="p-8 flex flex-col items-center border border-gray-300 rounded-sm shadow-lg"
       onClick={() => setIsOpen(prev => !prev)}
     >
       <div className="flex gap-8">
