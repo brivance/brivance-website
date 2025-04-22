@@ -2,8 +2,9 @@
 
 import "./globals.css";
 
+import { Montserrat, Scope_One } from "next/font/google";
+
 import Footer from "@/app/components/Footer";
-import { Montserrat } from "next/font/google";
 import NavBar from "@/app/components/NavBar";
 import { motion } from "framer-motion";
 
@@ -14,6 +15,12 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+const scopeOne = Scope_One({
+  weight: "400",
+  fallback: ["Courier New", "monospace"],
+  variable: "--font-code-one",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased`}
+        className={`${scopeOne.className} antialiased ${montserrat.className}`}
       >
         <NavBar />
         <motion.div

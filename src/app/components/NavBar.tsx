@@ -3,15 +3,21 @@
 import React, { FC, useEffect } from 'react';
 import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 
-import { Encode_Sans_Expanded } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Scope_One } from 'next/font/google';
 
-const encodedSans = Encode_Sans_Expanded({
+// const encodedSans = Encode_Sans_Expanded({
+//   weight: "400",
+//   fallback: ["Helvetica", "Arial", "sans-serif"],
+//   variable: "--font-encoded-sans",
+//   subsets: ["latin"],
+// });
+
+const scopeOne = Scope_One({
   weight: "400",
-  fallback: ["Helvetica", "Arial", "sans-serif"],
-  variable: "--font-encoded-sans",
-  subsets: ["latin"],
+  fallback: ["Courier New", "monospace"],
+  variable: "--font-code-one",
 });
 
 interface NavItem {
@@ -21,7 +27,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: 'home', link: '/' },
-  { name: 'projects', link: '/' },
+  { name: 'projects', link: '/projects' },
   { name: 'education', link: '/education' },
   { name: 'experience', link: '/experience' },
 ];
@@ -58,7 +64,7 @@ const NavBar: FC = () => {
   return (
     <motion.nav
       style={{ y: translateY }}
-      className={`${encodedSans.className} sticky text-white p-4 items-center bg-blackish rounded-b-md bg-opacity-90 flex justify-between top-0 z-10 px-10`}
+      className={`${scopeOne.className} sticky text-white p-4 items-center bg-blackish rounded-b-md bg-opacity-90 flex justify-between top-0 z-10 px-10`}
     >
       <motion.div style={{ scale: logoScale }} className="origin-bottom-left">
         <Link href="/" className="text-2xl">
@@ -67,9 +73,9 @@ const NavBar: FC = () => {
       </motion.div>
       <motion.ul
         style={{ opacity: navOpacity, scale: navScale }}
-        className={`${encodedSans.variable} flex list-none justify-end gap-10`}
+        className={`${scopeOne.variable} flex list-none justify-end gap-10`}
       >
-        <ul className={`${encodedSans.variable} flex list-none justify-end gap-10`}>
+        <ul className={`${scopeOne.variable} flex list-none justify-end gap-10`}>
           {navItems.map((item, index) => (
             <li key={index}>
               <a href={item.link} className="text-white no-underline text-lg font-normal">
