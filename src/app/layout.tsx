@@ -17,6 +17,7 @@ const montserrat = Montserrat({
 
 const scopeOne = Scope_One({
   weight: "400",
+  subsets: ["latin"],
   fallback: ["Courier New", "monospace"],
   variable: "--font-code-one",
 });
