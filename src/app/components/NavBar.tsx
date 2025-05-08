@@ -7,13 +7,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Scope_One } from 'next/font/google';
 
-// const encodedSans = Encode_Sans_Expanded({
-//   weight: "400",
-//   fallback: ["Helvetica", "Arial", "sans-serif"],
-//   variable: "--font-encoded-sans",
-//   subsets: ["latin"],
-// });
-
 const scopeOne = Scope_One({
   weight: "400",
   subsets: ["latin"],
@@ -65,7 +58,7 @@ const NavBar: FC = () => {
   return (
     <motion.nav
       style={{ y: translateY }}
-      className={`${scopeOne.className} sticky text-white p-4 items-center bg-blackish rounded-b-md bg-opacity-90 flex justify-between top-0 z-10 px-10`}
+      className={`${scopeOne.className} sticky text-white p-4 items-center bg-[#466174] rounded-b-md bg-opacity-90 flex justify-between top-0 z-10 px-10`}
     >
       <motion.div style={{ scale: logoScale }} className="origin-bottom-left">
         <Link href="/" className="text-2xl">
