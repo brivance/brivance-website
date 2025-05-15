@@ -1,5 +1,4 @@
 import ExternalLinkHoverEffect from "@components/ExternalLinkHoverEffect";
-import FunLinkCard from "@components/cards/FunLinkCard";
 import Image from "next/image";
 import { ImageHoverBlur } from "@components/cards/ImageHoverBlur";
 
@@ -36,14 +35,6 @@ export default function Home() {
         <div className="flex gap-32 text-xl">
           <ExternalLinkHoverEffect text="Github" href="https://github.com/brivance" className="text-2xl" />
           <ExternalLinkHoverEffect text="LinkedIn" href="https://www.linkedin.com/in/brivance/" className="text-2xl" />
-        </div>
-      </div>
-      <hr className="mx-9 text-gray-300 " />
-      <div>
-        <p className="text-center mt-28 mb-9 text-2xl">A few fun links...</p>
-        <div className="grid grid-cols-2 gap-28 w-4/7 mx-auto mb-28">
-          <FunLinkCard title="Kanye West Tweets" description="Discover Kanye's educational tweets" image="/fun-links/kanye-west.jpeg" href="https://oldbrivance.netlify.app/fun-links/kanye-tweets/index.html/" />
-          <FunLinkCard title="Weather App" description="View the weather in your favorite city" image="/fun-links/weather-forecast.jpg" href="https://oldbrivance.netlify.app/fun-links/weather-proj/index.html/" />
         </div>
       </div>
       <hr className="mx-9 text-gray-300 " />

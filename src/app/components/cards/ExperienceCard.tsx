@@ -17,15 +17,17 @@ const ExperienceCard = ({ title, subtitle, description, moreInformation, image }
   const [isOpen, setIsOpen] = useState(false);
   return (
     <a
-      className="p-8 flex flex-col items-center border border-gray-300 rounded-sm shadow-lg"
+      className="p-8 flex flex-col border border-gray-300 rounded-sm shadow-lg"
       onClick={() => setIsOpen(prev => !prev)}
     >
-      <div className="flex gap-8">
-        {image && <Image src={image} alt="image" width={250} height={250} />}
-        <div className="flex flex-col gap-2">
-          <p className="text-xl font-bold mt-2">{title}</p>
-          {subtitle && <p className="text-sm">{subtitle}</p>}
-          <p>{description}</p>
+      <div className="flex justify-between w-full gap-8">
+        <div className="flex justify-start gap-6">
+          {image && <Image src={image} alt="image" width={250} height={250} />}
+          <div className="flex flex-col gap-2">
+            <div className="text-xl font-bold mt-2">{title}</div>
+            {subtitle && <div className="text-sm">{subtitle}</div>}
+            <div>{description}</div>
+          </div>
         </div>
         {moreInformation &&
           <div>
@@ -35,12 +37,12 @@ const ExperienceCard = ({ title, subtitle, description, moreInformation, image }
       </div>
       {moreInformation &&
         <div
-          className={`transition-all duration-700 overflow-hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          className={`transition-all duration-700 ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
             }`}
         >
-          <p className="mt-4 text-gray-700">
+          <div className="mt-4 text-gray-700 flex justify-start overflow-visible">
             {moreInformation}
-          </p>
+          </div>
         </div>
       }
     </a>
