@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { ArrowBackward } from "../components/icons/ArrowBackward";
 import { ArrowForward } from "../components/icons/ArrowForward";
-import ProjectCard from "@components/cards/ProjectCard";
+import ProjectCard from "../components/cards/ProjectCard";
 import { motion } from "framer-motion";
 
 const realProjects = [
@@ -69,7 +69,6 @@ export default function Projects() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <p className="text-center mt-24 text-5xl">Projects</p>
 
       <div className="relative mt-14 w-full max-w-5xl flex items-center justify-center">
         <button onClick={handlePrev} className="absolute left-0 z-10 p-2">

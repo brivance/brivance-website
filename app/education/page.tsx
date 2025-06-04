@@ -16,8 +16,7 @@ export default function Education() {
 
   return (
     <>
-      <div className="text-center">
-        <p className="mt-24 text-5xl mb-16">Education</p>
+      <div className="text-center pt-14">
         <p className="text-3xl mb-3">BRIGHAM YOUNG UNIVERSITY</p>
         <div className="mx-32">
           <div className="w-full h-[55vh] relative overflow-hidden shadow-lg">

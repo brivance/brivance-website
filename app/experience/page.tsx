@@ -1,10 +1,9 @@
-import ExperienceCard from "@/app/components/cards/ExperienceCard";
+import ExperienceCard from "../components/cards/ExperienceCard";
 
 export default function Experience() {
   return (
     <>
-      <p className="text-center mt-24 text-5xl">Experience</p>
-      <div className="mt-14 mx-24 flex flex-col gap-12">
+      <div className="mt-20 mx-24 flex flex-col gap-12">
         <ExperienceCard
           title="Software Engineer"
           subtitle="Wasatch BioLabs - Sept 2024 to April 2025"

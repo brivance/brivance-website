@@ -1,4 +1,4 @@
-import { ArrowOutward } from "@components/icons/ArrowOutward";
+import { ArrowOutward } from "./icons/ArrowOutward";
 
 interface Props {
   text: string;

@@ -1,13 +1,12 @@
-import ExternalLinkHoverEffect from "@components/ExternalLinkHoverEffect";
+import ExternalLinkHoverEffect from "./components/ExternalLinkHoverEffect";
 import Image from "next/image";
-import { ImageHoverBlur } from "@components/cards/ImageHoverBlur";
+import { ImageHoverBlur } from "./components/cards/ImageHoverBlur";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center pt-15 mx-[5%] pb-20 gap-24">
+      <div className="flex flex-col items-center mx-[5%] pb-20 gap-24">
         <div className="bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-auto bg-cover bg-center flex flex-col items-center justify-center shadow-2xl rounded-sm">
-          <div className="text-8xl text-white mt-20">Brianna Vance</div>
           <div className="flex gap-28">
             <Image src="/personal-pics/floating-self.png" width={350} height={175} alt="Brianna Vance" />
             <div className="flex flex-col justify-center gap-15">
