@@ -5,9 +5,13 @@
   --color-foreground: var(--foreground);
 
   --color-pink-white: #fefcfc;
-  --color-secondary-pink: #eadfdf;
+  --color-secondary-pink: #f2e9e9;
   --color-blue: #466174;
+  --color-blue-hover: #7e98ab;
+  --color-light-blue: #cfe0ed;
+  --color-dark-blue: #335167;
   --color-blackish: #252424;
+  --color-green: #7faa94;
   --color-white: #fff;
   --color-purple: #3f3cbb;
   --color-midnight: #121063;

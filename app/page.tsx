@@ -1,4 +1,4 @@
-import { ArrowOutward } from "./components/icons/ArrowOutward";
+import { ArrowOutward } from "../public/icons/ArrowOutward";
 import Image from "next/image";
 // import { ImageHoverBlur } from "./components/cards/ImageHoverBlur";
 
@@ -33,13 +33,27 @@ export default function Home() {
         </div>
         <div className="flex gap-32 text-xl">
           <div className="flex gap-0.5 items-center group">
-            <a className="hover:text-[#879dac] text-2xl" href="https://github.com/brivance">Github</a>
+            <a
+              className="hover:text-[#879dac] text-2xl"
+              href="https://github.com/brivance"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github
+            </a>
             <div className="opacity-0 scale-0 origin-bottom-left transition-transform duration-800 group-hover:opacity-50 group-hover:scale-100">
               <ArrowOutward className="h-4 w-4" />
             </div>
           </div>
           <div className="flex gap-0.5 items-center group">
-            <a className="hover:text-[#879dac] text-2xl" href="https://www.linkedin.com/in/brivance/">LinkedIn</a>
+            <a
+              className="hover:text-[#879dac] text-2xl"
+              href="https://www.linkedin.com/in/brivance/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
             <div className="opacity-0 scale-0 origin-bottom-left transition-transform duration-800 group-hover:opacity-50 group-hover:scale-100">
               <ArrowOutward className="h-4 w-4" />
             </div>

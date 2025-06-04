@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowOutward } from "../icons/ArrowOutward";
+import { ArrowOutward } from "../../../public/icons/ArrowOutward";
 import Image from 'next/image';
 
 interface Props {

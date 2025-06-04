@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { KeyboardArrowDown } from '../icons/KeyboardArrowDown';
-import { KeyboardArrowUp } from '../icons/KeyboardArrowUp';
+import { KeyboardArrowDown } from '../../../public/icons/KeyboardArrowDown';
+import { KeyboardArrowUp } from '../../../public/icons/KeyboardArrowUp';
 import { useState } from 'react';
 
 interface Props {
