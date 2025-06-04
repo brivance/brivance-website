@@ -17,7 +17,7 @@ const ExperienceCard = ({ title, subtitle, description, moreInformation, image }
   const [isOpen, setIsOpen] = useState(false);
   return (
     <a
-      className="p-8 flex flex-col border border-gray-300 rounded-sm shadow-lg"
+      className="bg-white p-8 flex flex-col border border-gray-100 rounded-sm shadow-lg"
       onClick={() => setIsOpen(prev => !prev)}
     >
       <div className="flex justify-between w-full gap-8">
@@ -31,7 +31,7 @@ const ExperienceCard = ({ title, subtitle, description, moreInformation, image }
         </div>
         {moreInformation &&
           <div>
-            {isOpen ? <KeyboardArrowUp className="text-blackish h-8 w-8" /> : <KeyboardArrowDown className="text-blackish h-8 w-8" />}
+            {isOpen ? <KeyboardArrowUp className="text-blackish h-8 w-8" /> : <KeyboardArrowDown className="h-8 w-8" />}
           </div>
         }
       </div>

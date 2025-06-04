@@ -4,7 +4,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-pink-white: #f7f3f3;
+  --color-pink-white: #fefcfc;
   --color-secondary-pink: #eadfdf;
   --color-blue: #466174;
   --color-blackish: #252424;
@@ -16,8 +16,8 @@
 }
 
 :root {
-  --background: #f7f3f3;
-  --foreground: #1e3343;
+  --background: #fefcfc;
+  --foreground: #466174;
 
   --font-sans: var(--font-karla);
 }

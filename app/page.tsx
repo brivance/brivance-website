@@ -1,6 +1,6 @@
-import ExternalLinkHoverEffect from "./components/ExternalLinkHoverEffect";
+import { ArrowOutward } from "./components/icons/ArrowOutward";
 import Image from "next/image";
-import { ImageHoverBlur } from "./components/cards/ImageHoverBlur";
+// import { ImageHoverBlur } from "./components/cards/ImageHoverBlur";
 
 export default function Home() {
   return (
@@ -18,33 +18,43 @@ export default function Home() {
                 <a href="mailto:brievance3@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform duration-300 hover:scale-110 px-3 py-1 bg-[#7493B5] text-white rounded-md">
+                  className="transition-transform duration-300 hover:scale-110 px-3 py-1 bg-blue text-white rounded-md">
                   contact me
                 </a>
-                <a href="https://www.linkedin.com/in/brivance/"
+                <a href="/projects"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-transform duration-300 hover:scale-110 px-3 border-4 border-[#7493B5] text-[#7493B5] bg-gray-100 rounded-md">
-                  learn more
+                  className="transition-transform duration-300 hover:scale-110 px-3 border-4 border-blue text-blue bg-gray-100 rounded-md">
+                  see my work
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="flex gap-32 text-xl">
-          <ExternalLinkHoverEffect text="Github" href="https://github.com/brivance" className="text-2xl" />
-          <ExternalLinkHoverEffect text="LinkedIn" href="https://www.linkedin.com/in/brivance/" className="text-2xl" />
+          <div className="flex gap-0.5 items-center group">
+            <a className="hover:text-[#879dac] text-2xl" href="https://github.com/brivance">Github</a>
+            <div className="opacity-0 scale-0 origin-bottom-left transition-transform duration-800 group-hover:opacity-50 group-hover:scale-100">
+              <ArrowOutward className="h-4 w-4" />
+            </div>
+          </div>
+          <div className="flex gap-0.5 items-center group">
+            <a className="hover:text-[#879dac] text-2xl" href="https://www.linkedin.com/in/brivance/">LinkedIn</a>
+            <div className="opacity-0 scale-0 origin-bottom-left transition-transform duration-800 group-hover:opacity-50 group-hover:scale-100">
+              <ArrowOutward className="h-4 w-4" />
+            </div>
+          </div>
         </div>
       </div>
-      <hr className="mx-9 text-gray-300 " />
-      <div>
+      {/* <hr className="mx-9 text-gray-300 " /> */}
+      {/* <div>
         <p className="text-center mt-28 mb-9 text-2xl">A few of my interests</p>
         <div className="grid grid-flow-col auto-cols-max mx-auto gap-x-10 pb-28 w-fit">
           <ImageHoverBlur src="/interests/climbing.jpg" width={300} height={365} title="ROCK CLIMBING" className="shadow-lg" />
           <ImageHoverBlur src="/interests/ice-cream.jpg" width={300} height={398} title="MAKING ICE CREAM" className="shadow-lg" />
           <ImageHoverBlur src="/interests/keys-piano.jpg" width={300} height={373} title="PIANO BY EAR" className="shadow-lg" />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
