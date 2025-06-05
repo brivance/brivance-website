@@ -112,7 +112,7 @@ export default function MaternalHealthComplications() {
             </button>
           ))}
         </div>
-        <div className="px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
+        <div className="min-h-80 px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
       </div>
     </div>
   );

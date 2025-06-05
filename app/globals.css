@@ -39,3 +39,7 @@ body {
   --font-sans: var(--font-karla);
   font-family: var(--font-sans);
 }
+
+html {
+  scroll-behavior: smooth;
+}
