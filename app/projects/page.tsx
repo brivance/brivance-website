@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 import BriannaVanceWebsite from "./descriptions/BriannaVanceWebsite";
 import CaptchaRecognition from "./descriptions/CaptchaRecognition";
 import ChordGenerator from "./descriptions/ChordGenerator";
@@ -8,17 +10,43 @@ import MaternalHealthComplications from "./descriptions/MaternalHealthComplicati
 import PhotographyWebsite from "./descriptions/PhotographyWebsite";
 
 export default function Projects() {
+  const tocRef = useRef<HTMLDivElement>(null);
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+
+        setShowSidebar(!entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    const tocElement = tocRef.current;
+
+    if (tocElement) {
+      observer.observe(tocElement);
+    }
+
+    return () => {
+      if (tocElement) {
+        observer.unobserve(tocElement);
+      }
+    };
+  }, []);
 
   return (
     <>
-      <div className="flex flex-col gap-6 w-96 justify-center mx-auto mt-14 text-lg mb-[10%]">
+      <div ref={tocRef} className="flex flex-col gap-6 w-96 justify-center mx-auto mt-14 text-lg mb-[10%]">
         <div className="flex flex-col w-full">
           <div className="font-bold w-full flex justify-center bg-secondary-pink border border-secondary-pink rounded-sm items-center py-1">
             Machine Learning / AI
           </div>
           <ul className="flex flex-col gap-4 my-4">
             <li><a href="#chord-generator" className="hover:bg-white hover:border hover:border-gray-50 hover:rounded-md hover:shadow-sm p-2">chord generator</a></li>
-            <li><a href="#maternal-health-complications" className="hover:bg-white hover:border hover:border-gray-50 hover:rounded-md hover:shadow-sm p-2">maternal health complications</a></li>
+            <li><a href="#maternal-health" className="hover:bg-white hover:border hover:border-gray-50 hover:rounded-md hover:shadow-sm p-2">maternal health complications</a></li>
             <li><a href="#captcha-recognition" className="hover:bg-white hover:border hover:border-gray-50 hover:rounded-md hover:shadow-sm p-2">CAPTCHA recognition</a></li>
           </ul>
         </div>
@@ -33,10 +61,20 @@ export default function Projects() {
           </ul>
         </div>
       </div>
+      {showSidebar && (
+        <div className="fixed right-10 top-1/4 flex flex-col gap-14 z-50 text-right fade-in">
+          <a href="#chord-generator" className="hover:text-blue text-blue-hover">chord generator</a>
+          <a href="#maternal-health" className="hover:text-blue text-blue-hover">maternal health</a>
+          <a href="#captcha-recognition" className="hover:text-blue text-blue-hover">captcha</a>
+          <a href="#greencard-ai" className="hover:text-blue text-blue-hover">greencard ai</a>
+          <a href="#photography-website" className="hover:text-blue text-blue-hover">photography site</a>
+          <a href="#brianna-vance-website" className="hover:text-blue text-blue-hover">my website</a>
+        </div>
+      )}
       <div id="chord-generator" className="scroll-mt-24">
         <ChordGenerator />
       </div>
-      <div id="maternal-health-complications" className="scroll-mt-24">
+      <div id="maternal-health" className="scroll-mt-24">
         <MaternalHealthComplications />
       </div>
       <div id="captcha-recognition" className="scroll-mt-24">

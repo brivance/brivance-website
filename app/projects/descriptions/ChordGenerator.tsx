@@ -101,7 +101,7 @@ export default function ChordGenerator() {
             </button>
           ))}
         </div>
-        <div className="min-h-[300px] px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
+        <div className="min-h-[350px] px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
       </div>
     </div>
   );

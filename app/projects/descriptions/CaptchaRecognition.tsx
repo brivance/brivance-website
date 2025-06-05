@@ -92,7 +92,7 @@ export default function CaptchaRecognition() {
             </button>
           ))}
         </div>
-        <div className="min-h-[300px] px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
+        <div className="min-h-[300px] px-8 mt-4 text-center mb-[35%]">{renderContent()}</div>
       </div>
     </div>
   );

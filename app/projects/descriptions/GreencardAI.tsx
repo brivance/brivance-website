@@ -1,65 +1,200 @@
+import { AnimatePresence, motion } from "framer-motion";
+
 import { ArrowOutward } from "@public/icons/ArrowOutward";
 import Image from "next/image";
+import { TrendingFlat } from "@public/icons/TrendingFlat";
 import { useState } from "react";
 
+const galleryDesignItems = [
+  {
+    src: "/projects/greencard/questionnaire-design.png",
+    alt: "Questionnaire Form",
+    caption: "Questionnaire for clients with LLM feedback",
+  },
+  {
+    src: "/projects/greencard/editor-design.png",
+    alt: "Editor Page",
+    caption: "Text editor page for creating recommendation letters for clients",
+  },
+  {
+    src: "/projects/greencard/client-table-design.png",
+    alt: "Dashboard",
+    caption: "A dashboard for users",
+  },
+];
+
+const galleryPagesItems = [
+  {
+    src: "/projects/greencard/greencard-questionnaire-form.png",
+    alt: "Questionnaire Form",
+    caption: "The questionnaire form- clients can upload their resume to speed up the process.",
+  },
+  {
+    src: "/projects/greencard/greencard-form-feedback.png",
+    alt: "Questionnaire Form Feedback",
+    caption: "When the client hits 'next', their responses are sent to an LLM for feedback. They can choose to ignore the suggestions.",
+  },
+  {
+    src: "/projects/greencard/greencard-letters.png",
+    alt: "Recommendation Letter Drafting",
+    caption: "Users can draft recommendation letters with the help of AI. They can also view more information about their clients in different tabs as they draft.",
+  },
+  {
+    src: "/projects/greencard/greencard-dashboard.png",
+    alt: "Client Dashboard",
+    caption: "Users can invite or delete clients. Inviting them will send an email with a link to a questionnaire to fill out. If they click on a client that is ready, they can start drafting their recommendation letters.",
+  },
+  {
+    src: [
+      "/projects/greencard/greencard-register.png",
+      "/projects/greencard/greencard-login.png"
+    ],
+    alt: "Register and Login Forms",
+    caption: "Register and login forms have Zod validation to ensure smooth error handling on the frontend.",
+  },
+];
+
 export default function GreenCardAI() {
-
   const [activeTab, setActiveTab] = useState("Figma Designs");
-
   const tabs = ["Figma Designs", "Implementation", "Demo"];
+  const [[designIndex, designDirection], setDesignIndex] = useState([0, 0]);
+  const [[pagesIndex, pagesDirection], setPagesIndex] = useState([0, 0]);
+  const { src: designSrc, alt: designAlt, caption: designCaption } = galleryDesignItems[designIndex];
+  const { src: pagesSrc, alt: pagesAlt, caption: pagesCaption } = galleryPagesItems[pagesIndex];
+
+  const designTotal = galleryDesignItems.length;
+  const pagesTotal = galleryPagesItems.length;
+
+  const designPaginate = (dir: number) => {
+    setDesignIndex(([prevIndex]) => {
+      const newIndex = (prevIndex + dir + designTotal) % designTotal;
+      return [newIndex, dir];
+    });
+  };
+
+  const pagesPaginate = (dir: number) => {
+    setPagesIndex(([prevIndex]) => {
+      const newIndex = (prevIndex + dir + pagesTotal) % pagesTotal;
+      return [newIndex, dir];
+    });
+  };
+
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -300 : 300,
+      opacity: 0,
+    }),
+  };
 
   const renderContent = () => {
     switch (activeTab) {
       case "Figma Designs":
         return (
-          <div className="flex flex-col gap-5 items-center">
-            <div className="mb-10">
-              Before diving in, I created a few figma designs for some major parts of the app.
-            </div>
-            <div className="flex flex-col gap-16">
-              <div className="flex flex-col gap-1">
-                <Image src="/projects/greencard/questionnaire-design.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Questionnaire Form" />
-                <div>Questionnaire for clients with LLM feedback</div>
+          <div className="flex flex-col gap-6 items-center mt-10">
+            <div className="relative w-[700px] h-auto flex flex-col items-center gap-2">
+              <div className="flex justify-center gap-[3%] w-full">
+                <button
+                  onClick={() => designPaginate(-1)}
+                  className="flex items-center gap-1 text-sm text-gray-400 px-2 h-6 bg-gray-100 rounded-sm hover:bg-gray-200"
+                >
+                  <TrendingFlat className="h-4 w-4 scale-x-[-1]" />
+                  <div>Prev</div>
+                </button>
+                <button
+                  onClick={() => designPaginate(1)}
+                  className="flex items-center gap-1 text-sm text-gray-400 px-2 h-6 bg-gray-100 rounded-sm hover:bg-gray-200"
+                >
+                  <div>Next</div>
+                  <TrendingFlat className="h-4 w-4" />
+                </button>
               </div>
-              <div className="flex flex-col gap-1">
-                <Image src="/projects/greencard/editor-design.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Questionnaire Form" />
-                <div>Text editor page for creating recommendation letters for clients</div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <Image src="/projects/greencard/client-table-design.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Questionnaire Form" />
-                <div>A dashboard for users</div>
+              <div className="flex justify-center relative w-full h-auto mt-4">
+                <AnimatePresence custom={designDirection} mode="wait">
+                  <motion.div
+                    key={designIndex}
+                    custom={designDirection}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.25 }}
+                    className="absolute w-full"
+                  >
+                    <Image
+                      src={designSrc}
+                      alt={designAlt}
+                      width={1000}
+                      height={400}
+                      className="shadow-lg border border-gray-300"
+                    />
+                    <div className="text-center mt-4">{designCaption}</div>
+
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
         );
       case "Implementation":
         return (
-          <div className="flex flex-col gap-5 items-center">
-            <div className="mb-10">
-              These are pages I created for GreenCard AI. See how they compare to the mockups! (Keep in mind, this is all dummy data.)
-            </div>
-            <div className="flex flex-col gap-18 items-center justify-center">
-              <div className="flex flex-col gap-2">
-                <Image src="/projects/greencard/greencard-questionnaire-form.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Questionnaire Form" />
-                <div>The questionnaire form- clients can upload their resume to speed up the process.</div>
+          <div className="flex flex-col gap-6 items-center mt-10">
+            <div className="relative w-[700px] h-auto flex flex-col items-center gap-2">
+              <div className="flex justify-center gap-[3%] w-full">
+                <button
+                  onClick={() => pagesPaginate(-1)}
+                  className="flex items-center gap-1 text-sm text-gray-400 px-2 h-6 bg-gray-100 rounded-sm hover:bg-gray-200"
+                >
+                  <TrendingFlat className="h-4 w-4 scale-x-[-1]" />
+                  <div>Prev</div>
+                </button>
+                <button
+                  onClick={() => pagesPaginate(1)}
+                  className="flex items-center gap-1 text-sm text-gray-400 px-2 h-6 bg-gray-100 rounded-sm hover:bg-gray-200"
+                >
+                  <div>Next</div>
+                  <TrendingFlat className="h-4 w-4" />
+                </button>
               </div>
-              <div className="flex flex-col gap-2">
-                <Image src="/projects/greencard/greencard-form-feedback.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Questionnaire Form Feedback" />
-                <div>When the client hits &quot;next&quot;, their responses are sent to an LLM for feedback. They can choose to ignore the suggestions.</div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Image src="/projects/greencard/greencard-letters.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Recommendation Letter Drafting" />
-                <div>Users can draft recommendation letters with the help of AI. They can also view more information about their clients in different tabs as they draft.</div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Image src="/projects/greencard/greencard-dashboard.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Client Dashboard" />
-                <div>Users can invite or delete clients. Inviting them will send an email with a link to a questionnaire
-                  to fill out. If they click on a client that is ready, they can start drafting their recommendation letters. </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Image src="/projects/greencard/greencard-register.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Recommendation Letter Drafting" />
-                <Image src="/projects/greencard/greencard-login.png" className="shadow-lg border border-gray-300" width={700} height={175} alt="Recommendation Letter Drafting" />
-                <div>Register and login forms have Zod validation to ensure smooth error handling on the frontend.</div>
+              <div className="flex justify-center relative w-full h-auto mt-4">
+                <AnimatePresence custom={pagesDirection} mode="wait">
+                  <motion.div
+                    key={pagesIndex}
+                    custom={pagesDirection}
+                    variants={variants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.25 }}
+                    className="absolute w-full"
+                  >
+                    <Image
+                      src={Array.isArray(pagesSrc) ? pagesSrc[0] : pagesSrc}
+                      alt={pagesAlt}
+                      width={1000}
+                      height={400}
+                      className="shadow-lg border border-gray-300"
+                    />
+                    {Array.isArray(pagesSrc) && (
+                      <Image
+                        src={pagesSrc[1]}
+                        alt={pagesAlt}
+                        width={1000}
+                        height={400}
+                        className="shadow-lg border border-gray-300"
+                      />
+                    )}
+                    <div className="text-center mt-4">{pagesCaption}</div>
+
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </div>
@@ -117,7 +252,7 @@ export default function GreenCardAI() {
             </button>
           ))}
         </div>
-        <div className="min-h-[300px] px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
+        <div className="min-h-[700px] px-8 mt-4 text-center mb-[20%]">{renderContent()}</div>
       </div>
     </div>
   );
