@@ -33,9 +33,9 @@ export default function Home() {
         <div className="md:hidden pt-[20%] flex bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-3/4 bg-cover bg-center flex-col items-center justify-center shadow-2xl rounded-sm">
           <div className="flex justify-center w-full">
             <div className="flex flex-col gap-14 pl-[8%]">
-              <div className="flex flex-col gap-1 mt-[25%] text-white font-bold">
-                <div className="text-4xl">Got an idea?</div>
-                <div className="text-2xl">Let&apos;s make it happen.</div>
+              <div className="flex flex-col mt-[25%] text-white font-bold">
+                <div className="text-[clamp(2.5rem,10vw,3rem)]">Got an idea?</div>
+                <div className="text-[clamp(1rem,8vw,2rem)] -mt-[2%]">Let&apos;s make it happen.</div>
               </div>
               <div className="flex relative overflow-visible">
                 <div className="z-10 flex flex-col justify-center items-start gap-5 text-2xl mb-[25%] whitespace-nowrap">
