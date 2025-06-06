@@ -5,6 +5,7 @@ import { motion, useMotionValue, useScroll, useTransform } from 'framer-motion';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import MobileNavBar from './MobileNavBar';
 import { usePathname } from 'next/navigation';
 
 interface NavItem {
@@ -64,100 +65,106 @@ const NavBar: FC = () => {
   if (pathname === '/') {
     // Return a special NavBar just for the homepage
     return (
-      <motion.nav
-        key="homepage-nav"
-        style={{
-          height: homeLogoHeight,
-        }}
-        className={`flex sticky py-6 text-blue items-center bg-pink-white justify-center gap-14 rounded-b-md top-0 z-10 px-8`}
-      >
-        <motion.div
-          style={{ y: homeTranslateY }}
-          className={`flex list-none gap-10`}
+      <>
+        <motion.nav
+          key="homepage-nav"
+          style={{
+            height: homeLogoHeight,
+          }}
+          className={`hidden md:flex w-full sticky py-6 text-blue items-center bg-pink-white justify-center gap-14 rounded-b-md top-0 z-10 px-8`}
         >
-          <motion.ul className={`flex list-none gap-10`}>
-            {firstHalf.map((item) => {
-              return (
-                <li key={item.link} className="flex items-center">
-                  <Link
-                    href={item.link}
-                    className={`
+          <motion.div
+            style={{ y: homeTranslateY }}
+            className={`flex list-none gap-10`}
+          >
+            <motion.ul className={`flex list-none gap-10`}>
+              {firstHalf.map((item) => {
+                return (
+                  <li key={item.link} className="flex items-center">
+                    <Link
+                      href={item.link}
+                      className={`
                   inline-block items-center no-underline hover:font-bold font-normal text-lg transition-transform duration-300 hover:scale-150
                 `}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </motion.ul>
-        </motion.div>
-        <motion.div style={{ y: homeLogoTranslateY, scale: homeLogoScale }} className="origin-bottom-top">
-          <Link href="/" className="text-2xl">
-            <Image src="/full-logo.png" alt="Logo" className="min-w-48" width={500} height={100} />
-          </Link>
-        </motion.div>
-        <motion.div
-          style={{ y: homeTranslateY }}
-          className={`flex list-none gap-10`}
-        >
-          <motion.ul className={`flex list-none gap-10`}>
-            {secondHalf.map((item) => {
-              return (
-                <li key={item.link} className="flex items-center">
-                  <Link
-                    href={item.link}
-                    className={`
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </motion.ul>
+          </motion.div>
+          <motion.div style={{ y: homeLogoTranslateY, scale: homeLogoScale }} className="origin-bottom-top">
+            <Link href="/" className="text-2xl">
+              <Image src="/full-logo.png" alt="Logo" className="min-w-48" width={500} height={100} />
+            </Link>
+          </motion.div>
+          <motion.div
+            style={{ y: homeTranslateY }}
+            className={`flex list-none gap-10`}
+          >
+            <motion.ul className={`flex list-none gap-10`}>
+              {secondHalf.map((item) => {
+                return (
+                  <li key={item.link} className="flex items-center">
+                    <Link
+                      href={item.link}
+                      className={`
                   inline-block items-center no-underline hover:font-bold font-normal text-lg transition-transform duration-300 hover:scale-150
                 `}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </motion.ul>
-        </motion.div>
-      </motion.nav>
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </motion.ul>
+          </motion.div>
+        </motion.nav>
+        <MobileNavBar />
+      </>
     );
   }
 
   return (
-    <motion.nav
-      key="default-nav"
-      style={{ y: translateY }}
-      className={`sticky text-blue bg-pink-white py-6 items-center rounded-b-md flex justify-between top-0 z-10 px-8`}
-    >
-      <motion.div style={{ scale: logoScale }} className="origin-left">
-        <Link href="/" className="text-2xl">
-          <Image src="/logo.png" alt="Logo" width={150} height={15} />
-        </Link>
-      </motion.div>
-      <motion.div
-        style={{ scale: navScale }}
-        className={`flex list-none justify-end gap-10`}
+    <>
+      <motion.nav
+        key="default-nav"
+        style={{ y: translateY }}
+        className={`hidden md:flex w-full sticky text-blue bg-pink-white py-6 items-center rounded-b-md justify-between top-0 z-10 px-8`}
       >
-        <ul className={`flex list-none justify-end gap-10`}>
-          {navItems.map((item) => {
-            const isActive = pathname === item.link;
+        <motion.div style={{ scale: logoScale }} className="origin-left">
+          <Link href="/" className="text-2xl">
+            <Image src="/logo.png" alt="Logo" width={150} height={15} />
+          </Link>
+        </motion.div>
+        <motion.div
+          style={{ scale: navScale }}
+          className={`flex list-none justify-end gap-10`}
+        >
+          <ul className={`flex list-none justify-end gap-10`}>
+            {navItems.map((item) => {
+              const isActive = pathname === item.link;
 
-            return (
-              <li key={item.link} className="flex items-center">
-                <Link
-                  href={item.link}
-                  className={`
+              return (
+                <li key={item.link} className="flex items-center">
+                  <Link
+                    href={item.link}
+                    className={`
                   inline-block items-center no-underline hover:font-bold
                   ${isActive ? 'font-bold text-2xl' : 'font-normal text-lg transition-transform duration-300 hover:scale-150'}
                 `}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </motion.div>
-    </motion.nav>
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </motion.div>
+      </motion.nav>
+      <MobileNavBar />
+    </>
   );
 };
 

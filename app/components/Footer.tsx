@@ -13,7 +13,7 @@ const montserrat = Montserrat({
 const Footer: FC = () => {
   return (
     <footer>
-      <div className={`${montserrat.className} mt-20 w-full bg-[#466174] rounded-t-md text-white py-8 text-center`}>
+      <div className={`${montserrat.className} mt-20 w-full bg-[#466174] rounded-t-md text-white py-2 md:py-8 text-center`}>
         <p>Contact me at <a
           href="mailto:brievance3@gmail.com"
           className="underline text-blue-200 hover:text-blue-100"

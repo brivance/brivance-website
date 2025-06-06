@@ -1,15 +1,14 @@
 import { ArrowOutward } from "../public/icons/ArrowOutward";
 import Image from "next/image";
-// import { ImageHoverBlur } from "./components/cards/ImageHoverBlur";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col items-center mx-[5%] pb-20 gap-16">
-        <div className="bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-auto bg-cover bg-center flex flex-col items-center justify-center shadow-2xl rounded-sm">
-          <div className="flex gap-28">
+      <div className="flex flex-col items-center mx-[5%] pb-8 md:pb-20 gap-16">
+        <div className="hidden md:flex bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-auto bg-cover bg-center flex-col items-center justify-center shadow-2xl rounded-sm">
+          <div className="flex justify-center lg:gap-[8%] w-full">
             <Image src="/personal-pics/floating-self.png" width={350} height={175} alt="Brianna Vance" />
-            <div className="flex flex-col justify-center gap-15">
+            <div className="flex flex-col justify-center gap-[10%]">
               <div className="flex flex-col text-white text-5xl">
                 <div>Got an idea?</div>
                 <div>Let&apos;s make it happen.</div>
@@ -31,7 +30,36 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex gap-32 text-xl">
+        <div className="md:hidden pt-[20%] flex bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-3/4 bg-cover bg-center flex-col items-center justify-center shadow-2xl rounded-sm">
+          <div className="flex justify-center w-full">
+            <div className="flex flex-col gap-14 px-[5%]">
+              <div className="flex flex-col gap-1 mt-[25%] text-white mx-[5%] font-bold">
+                <div className="text-4xl">Got an idea?</div>
+                <div className="text-2xl">Let&apos;s make it happen.</div>
+              </div>
+              <div className="flex relative overflow-visible">
+                <div className="z-10 flex flex-col justify-center items-start gap-5 text-2xl mb-[30%] whitespace-nowrap">
+                  <a href="/projects"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-transform duration-300 text-center hover:scale-110 px-2 border-4 border-blue text-blue bg-gray-100 rounded-md">
+                    see my work
+                  </a>
+                  <a href="mailto:brievance3@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-transform duration-300 hover:scale-110 px-2 py-1 bg-blue text-white rounded-md text-center">
+                    contact me
+                  </a>
+                </div>
+                <div className="z-0 -mr-[10%]">
+                  <Image src="/personal-pics/floating-self.png" width={200} height={175} alt="Brianna Vance" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex gap-10 md:gap-32 text-xl">
           <div className="flex gap-0.5 items-center group">
             <a
               className="hover:text-[#879dac] text-2xl"
@@ -60,15 +88,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* <hr className="mx-9 text-gray-300 " /> */}
-      {/* <div>
-        <p className="text-center mt-28 mb-9 text-2xl">A few of my interests</p>
-        <div className="grid grid-flow-col auto-cols-max mx-auto gap-x-10 pb-28 w-fit">
-          <ImageHoverBlur src="/interests/climbing.jpg" width={300} height={365} title="ROCK CLIMBING" className="shadow-lg" />
-          <ImageHoverBlur src="/interests/ice-cream.jpg" width={300} height={398} title="MAKING ICE CREAM" className="shadow-lg" />
-          <ImageHoverBlur src="/interests/keys-piano.jpg" width={300} height={373} title="PIANO BY EAR" className="shadow-lg" />
-        </div>
-      </div> */}
     </>
   );
 }
