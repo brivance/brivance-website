@@ -39,7 +39,7 @@ export default function Projects() {
 
   return (
     <>
-      <div ref={tocRef} className="flex flex-col gap-6 w-96 justify-center mx-auto mt-14 text-lg mb-[10%]">
+      <div ref={tocRef} className="flex flex-col gap-6 md:w-96 justify-center px-2 mx-auto mt-14 text-lg mb-[10%]">
         <div className="flex flex-col w-full">
           <div className="font-bold w-full flex justify-center bg-secondary-pink border border-secondary-pink rounded-sm items-center py-1">
             Machine Learning / AI
@@ -62,7 +62,7 @@ export default function Projects() {
         </div>
       </div>
       {showSidebar && (
-        <div className="fixed right-10 top-1/4 flex flex-col gap-14 z-50 text-right fade-in">
+        <div className="hidden lg:flex fixed right-10 top-1/4 flex-col gap-14 z-50 text-right fade-in">
           <a href="#chord-generator" className="hover:text-blue text-blue-hover">chord generator</a>
           <a href="#maternal-health" className="hover:text-blue text-blue-hover">maternal health</a>
           <a href="#captcha-recognition" className="hover:text-blue text-blue-hover">captcha</a>
