@@ -7,7 +7,7 @@ export default function Home() {
       <div className="flex flex-col items-center mx-[5%] pb-8 md:pb-20 gap-16">
         <div className="hidden md:flex bg-[url('/personal-pics/sparkle-bg.png')] relative w-full h-auto bg-cover bg-center flex-col items-center justify-center shadow-2xl rounded-sm">
           <div className="flex justify-center lg:gap-[8%] w-full">
-            <Image src="/personal-pics/floating-self.png" width={350} height={175} alt="Brianna Vance" />
+            <Image src="/personal-pics/floating-self.png" width={350} height={175} className="pt-[5%] ml-[3%]" alt="Brianna Vance" />
             <div className="flex flex-col justify-center gap-[10%]">
               <div className="flex flex-col text-white text-5xl">
                 <div>Got an idea?</div>
