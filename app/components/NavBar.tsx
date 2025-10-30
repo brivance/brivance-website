@@ -4,7 +4,6 @@ import React, { FC, useState } from 'react';
 
 import { Kalnia } from 'next/font/google';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 const kalnia = Kalnia({
   subsets: ['latin'],
@@ -14,7 +13,6 @@ const kalnia = Kalnia({
 
 const NavBar: FC = () => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
   return (
     <>

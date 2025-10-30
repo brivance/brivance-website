@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import { Kalnia } from 'next/font/google';
 import Link from 'next/link';
-import { toast } from 'react-hot-toast';
-import { useEffect } from 'react';
 
 const kalnia = Kalnia({
   subsets: ['latin'],
