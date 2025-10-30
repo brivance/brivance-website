@@ -2,14 +2,14 @@
 
 import "./globals.css";
 
-import Footer from "./components/Footer";
-import { Karla } from 'next/font/google';
+import { Inconsolata } from 'next/font/google';
 import NavBar from "./components/NavBar";
+import { Toaster } from "react-hot-toast";
 
-const karla = Karla({
+const inconsolata = Inconsolata({
   subsets: ['latin'],
   weight: ['400', '500', '600'], // choose what you use
-  variable: '--font-karla',      // sets a CSS variable
+  variable: '--font-inconsolata',      // sets a CSS variable
 });
 
 export default function RootLayout({
@@ -20,11 +20,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${karla.variable} bg-pink-white text-blue-500`}
+        className={`${inconsolata.className} text-black`}
       >
         <NavBar />
+        <Toaster
+          position="top-center"
+          containerStyle={{ zIndex: 100000 }}
+        />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

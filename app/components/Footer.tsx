@@ -14,11 +14,11 @@ const Footer: FC = () => {
   return (
     <footer>
       <div className={`${montserrat.className} mt-20 w-full bg-[#466174] rounded-t-md text-white py-2 md:py-8 text-center`}>
-        <p>Contact me at <a
+        <p><a
           href="mailto:brievance3@gmail.com"
           className="underline text-blue-200 hover:text-blue-100"
         >
-          brievance3@gmail.com
+          Contact me
         </a> with any questions or inquiries.</p>
       </div>
     </footer>

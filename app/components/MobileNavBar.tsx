@@ -7,9 +7,7 @@ import { useState } from "react";
 const navItems = [
   { name: "home", link: "/" },
   { name: "projects", link: "/projects" },
-  { name: "education", link: "/education" },
-  { name: "experience", link: "/experience" },
-];
+  { name: "contact", link: "/contact" },];
 
 export default function MobileNavBar() {
   const [open, setOpen] = useState(false);
