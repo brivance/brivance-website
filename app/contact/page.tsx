@@ -1,13 +1,15 @@
 "use client";
 
+import CAPTCHA, { CaptchaRef } from "@/components/CAPTCHA";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useRef, useState } from "react";
 
 import Link from "next/link";
 import { toast } from "react-hot-toast";
-import { useState } from "react";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const captchaRef = useRef<CaptchaRef>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,6 +19,15 @@ export default function ContactForm() {
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    const token = await captchaRef.current?.execute();
+
+    if (!token) {
+      setStatus("error");
+      toast.error("Captcha verification failed. Please try again.");
+      return;
+    }
+
+    data.token = token;
 
     const res = await fetch("/api/contact", {
       method: "POST",
@@ -83,6 +94,7 @@ export default function ContactForm() {
             {/* {status === "error" && (
               <p className="text-red-600 text-center">Something went wrong. Try again later.</p>
             )} */}
+            <CAPTCHA ref={captchaRef} />
           </form>
         </div>
       </div>

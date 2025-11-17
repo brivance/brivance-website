@@ -54,6 +54,7 @@ function Hero() {
             alt="Hero Image"
             width={250}
             height={250}
+            priority
             className="relative z-10 bg-black min-w-[250px]"
           />
         </div>
