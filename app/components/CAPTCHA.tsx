@@ -35,6 +35,7 @@ const CAPTCHA = forwardRef<CaptchaRef, CaptchaProps>(({ siteKey }, ref) => {
       ref={recaptchaRef}
       sitekey={siteKey ?? process.env.NEXT_PUBLIC_RECAPTCHA_KEY!}
       size="invisible"
+      badge="bottomright"
     />
   );
 });

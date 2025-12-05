@@ -94,10 +94,11 @@ export default function ContactForm() {
             {/* {status === "error" && (
               <p className="text-red-600 text-center">Something went wrong. Try again later.</p>
             )} */}
-            <CAPTCHA ref={captchaRef} />
           </form>
         </div>
       </div>
+      <CAPTCHA ref={captchaRef} />
+
     </div>
   );
 }
