@@ -4,7 +4,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-pink-white: #faeeee;
+  --color-primary-pink: #e8ccbc;
   --color-secondary-pink: #f2e9e9;
   --color-blue: #466174;
   --color-blue-hover: #7e98ab;
@@ -13,7 +13,7 @@
   --color-blackish: #252424;
   --color-green: #7faa94;
   --color-white: #fff;
-  --color-whitish: #f5f5f5;
+  --color-whitish: #f8f8f8;
   --color-purple: #caa4d2;
   --color-light-purple: #e6c7ed;
   --color-midnight: #121063;
@@ -60,4 +60,27 @@ html {
 
 .fade-in {
   animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes scrollDownUpOnce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--scroll-amt));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* default state */
+.scroll-anim-once {
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* play once per hover */
+.scroll-mask:hover .scroll-anim-once {
+  animation: scrollDownUpOnce var(--dur, 10s) ease-in-out 1;
 }

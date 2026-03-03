@@ -2,22 +2,25 @@
 
 import { FC, useState } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import { Lumanosimo } from 'next/font/google';
+
+const lumanosimo = Lumanosimo({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-lumanosimo',      // sets a CSS variable
+});
 
 const NavBar: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <nav className={`bg-yellow flex items-center justify-between px-12 py-6 sticky top-0 z-50 md:text-xl font-light`}>
-        <Image
-          src="/logo-web-studio.png"
-          alt="Brivance Logo"
-          width={150}
-          height={150}
-        />
-        <div className="hidden md:flex">
+    <div
+      className={`${lumanosimo.className} bg-[#E5DDCB] sticky top-0 z-50 w-full px-12 py-6 md:text-xl font-light`}
+    >
+      <nav className="flex items-center justify-between">
+        <div className="hidden md:flex md:justify-between w-full">
+          <Link href="/" className="text-5xl"> BRIANNA VANCE WEB STUDIO </Link>
           <div className="flex justify-end gap-8">
             <Link href="/">
               home
@@ -30,7 +33,11 @@ const NavBar: FC = () => {
             </Link>
           </div>
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden flex justify-between w-full gap-7">
+          <Link href="/" className="flex flex-col items-start gap-1 cursor-pointer" scroll={true}>
+            <div className="text-[27px] leading-8"> BRIANNA VANCE</div>
+            <div className="text-[27px] leading-8">WEB STUDIO </div>
+          </Link>
           <button
             onClick={() => setOpen(!open)}
             className="focus:outline-none cursor-pointer"
@@ -82,7 +89,7 @@ const NavBar: FC = () => {
           )}
         </div>
       </nav>
-    </>
+    </div>
   )
 };
 

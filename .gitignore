@@ -39,3 +39,16 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video files i uploaded to CDN
+public/portfolio/bayonet-battalion/bb-laptop-demo.mov
+public/portfolio/bayonet-battalion/bb-mobile-demo.mov
+public/portfolio/greencardai/portfolio-demo.mov
+public/portfolio/sam-vance/laptop-demo.mov
+public/portfolio/sam-vance/mobile-demo.mov
+public/landing-page/baybat-demo.mp4
+public/landing-page/bayonet-mobile-demo.mov
+public/landing-page/sam-vance-mobile-demo.mov
+public/landing-page/mobile-sam-projects.mov
+public/landing-page/sam-v-projects-demo.mov
+public/landing-page/sam-vance-demo.mov

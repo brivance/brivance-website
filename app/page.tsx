@@ -1,145 +1,153 @@
 "use client";
 
-import Image from 'next/image';
-import { Kalnia } from 'next/font/google';
-import Link from 'next/link';
+import { Afacad, Lumanosimo } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
+import { WebsiteCarousel } from "./components/WebsiteCarousel";
+import { item, panelInFromLeftInView, panelInRight, panelInRightTransition, StaggerInView, textInAfterRightPanel, textInAfterPanelTransition, textInFromLeftAfterPanelInView, UpItem, makeContainer } from "./components/FramerMotion";
 
-const kalnia = Kalnia({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'], // choose what you use
-  variable: '--font-kalnia',      // sets a CSS variable
+const lumanosimo = Lumanosimo({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-lumanosimo",
 });
+
+const afacad = Afacad({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-afacad",
+});
+
+const carouselItems = [
+  { kind: "video", src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/sam-vance-demo.mov", type: "video/mp4" },
+  { kind: "image", src: "/landing-page/washdudes-demo.png", alt: "Wash Dudes", width: 900, height: 700, priority: true },
+  { kind: "video", src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/bb-demo.mp4", type: "video/mp4" },
+] as const;
 
 export default function Home() {
   return (
-    <span>
-      <div>
-        <Hero />
-        <Projects />
-        <Inquire />
-      </div>
-    </span>
+    <>
+      <Hero />
+      <Projects />
+      <Inquire />
+    </>
   );
 }
 
-
 function Hero() {
   return (
-    <div className={`bg-yellow w-full min-h-screen pt-10`}>
-      <div className="hidden md:flex">
-        <div className="flex md:flex-row flex-col justify-between mx-auto w-5/7 min-h-[70vh] items-center gap-[10%]">
-          <div className="flex flex-col justify-between min-h-[60vh]">
-            <div className={`${kalnia.className} flex flex-col justify-start text-7xl md:text-[8rem] gap-0 tracking-tight leading-tight -mt-3`}>
-              <span>BRIANNA</span>
-              <span className="-mt-6">VANCE</span>
-            </div>
-            <Link
-              className="px-6 py-2 bg-white w-fit text-xl cursor-pointer"
-              href="/portfolio">
-              view my work
-            </Link>
-          </div>
-          <div>
-            <div className="flex flex-col justify-end text-2xl text-end -ml-32 whitespace-nowrap mt-32">
-              <span>web designer.</span>
-              <span>software engineer.</span>
-            </div>
-          </div>
-          <div className="relative flex items-center justify-center overflow-visible">
-            {/* background box */}
-            <div className="absolute w-full h-full bg-purple -left-[6%] top-[3%]"></div>
-
-            {/* image */}
-            <Image
-              src="/brianna-vance.jpeg"
-              alt="Hero Image"
-              width={250}
-              height={250}
-              priority
-              className="relative z-10 bg-black min-w-[250px]"
-            />
-          </div>
+    <section className="relative w-full min-h-screen">
+      <motion.div className={`relative ${afacad.className} bg-[#E8CCBC] w-full h-[210px] flex flex-col justify-center mt-14 text-6xl`} variants={makeContainer()}
+        initial="hidden"
+        animate="show">
+        <motion.div className="absolute top-[3vw] left-[20vw] flex flex-col gap-1 text-center" variants={makeContainer()}>
+          <UpItem>
+            <div>YOUR NEXT WEBSITE</div>
+          </UpItem>
+          <UpItem>
+            <div>STARTS HERE.</div>
+          </UpItem>
+        </motion.div>
+        <motion.button
+          onClick={() => window.location.href = "/get-started"}
+          className={`${lumanosimo.className} absolute right-0 -bottom-[3vw] w-9/20 h-[80px] bg-whitish flex items-center overflow-hidden transition-transform duration-150 ease-out hover:scale-105 active:scale-100 cursor-pointer`}
+          {...panelInRight}
+          transition={panelInRightTransition}
+        >
+          <motion.div
+            {...textInAfterRightPanel}
+            transition={textInAfterPanelTransition}
+            className="pl-[2vw] text-3xl"
+          >
+            Get a quote
+          </motion.div>
+        </motion.button>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+        className="relative"
+      >
+        <div className="absolute left-0 top-[5vw] w-[150%]">
+          <WebsiteCarousel items={[...carouselItems]} intervalMs={9000} introDelay={0.6} />
         </div>
-      </div>
-      <div className="md:hidden flex flex-col justify-center mb-10 text-2xl">
-        <div className={`${kalnia.className} flex flex-col justify-start text-7xl md:text-[8rem] gap-0 tracking-tight leading-tight`}>
-          <span>BRIANNA</span>
-          <span className="-mt-4">VANCE</span>
-        </div>
-        <div className="flex justify-end mx-4 mt-4">
-          <div className="flex flex-col justify-end text-xl whitespace-nowrap text-end mr-4">
-            <span>web designer.</span>
-            <span>software engineer.</span>
-          </div>
-          <div className="flex justify-end items-end relative overflow-visible">
-            {/* background box */}
-            <div className="absolute w-full h-full bg-purple -left-[6%] top-[3%]"></div>
-
-            {/* image */}
-            <Image
-              src="/brianna-vance.jpeg"
-              alt="Hero Image"
-              width={150}
-              height={150}
-              priority
-              className="relative z-10 bg-black"
-            />
-          </div>
-        </div>
-        <Link
-          className="px-6 py-2 bg-white w-fit text-xl cursor-pointer mx-auto mt-20"
-          href="/portfolio">
-          view my work
-        </Link>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 }
 
 function Projects() {
-  return (
-    <div className="bg-white w-full pt-40">
-      <div className="bg-white w-5/7 mx-auto text-2xl">
-        previous custom designs
-      </div>
-      <div className="flex flex-col md:flex-row gap-10 md:gap-[5%] justify-between w-9/10 md:w-5/7 mx-auto mt-16 mb-54">
-        <video
-          className="md:w-1/2"
-          // preload="metadata"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/web-design-example-1.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <video
-          className="md:w-1/2"
-          // preload="metadata"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/baybat-demo.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
+  const lines = [
+    "I am just a girl from Idaho, trying to make a living doing what I love.",
+    "I have a degree in Computer Science with a minor in Mathematics.",
+    "Some of my hobbies include rock climbing, playing the piano, and making ice cream.",
+    "Currently in Michigan, I’m trying to survive the coldest winter of my life. 🥶",
+    "I’ve worked full-time for companies as a web developer, but my heart lies in freelancing.",
+    "As my client, you are the priority.",
+  ];
 
+  return (
+    <section className="relative w-full min-h-screen">
+      <motion.div className="absolute flex -top-[3vw] text-5xl w-1/2 bg-[#F8F8F8] text-end justify-end h-[160px] z-3 pr-5"
+        {...panelInFromLeftInView}
+      >
+        <motion.div className={`${lumanosimo.className} flex justify-end mt-4 mr-4 leading-15`}
+          {...textInFromLeftAfterPanelInView}
+        >
+          About<br />Me
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        className="absolute top-20 left-[14vw] z-3"
+        variants={item}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <Image
+          src="/brianna-vance.png"
+          alt=""
+          width={325}
+          height={325}
+          className="object-cover bg-[#D1B4B4]"
+        />
+      </motion.div>
+
+      <div className="absolute top-[6vw] bg-[#E8CCBC] h-[600px] w-full z-2">
+        <StaggerInView
+          className="absolute left-[43vw] w-1/2 text-[25px] top-[4vw] flex flex-col gap-8"
+          amount={0.25}
+        >
+          {lines.map((t) => (
+            <UpItem key={t}>{t}</UpItem>
+          ))}
+        </StaggerInView>
+      </div>
+    </section>
   );
 }
 
 function Inquire() {
   return (
-    <div className="bg-light-purple w-full pt-60 pb-60">
-      <div className="flex justify-center mx-auto text-2xl">
-        exactly the way you want it.
-      </div>
-      <Link className="bg-white px-4 py-2 mx-auto mt-16 block text-xl w-fit" href="/contact">
-        inquire today
-      </Link>
-    </div>
+    <section className="relative w-full pb-24">
+      <StaggerInView className="mx-[10vw] flex flex-wrap items-center justify-end gap-12" amount={0.45}>
+        <UpItem className={`${lumanosimo.className} text-4xl`}>
+          READY TO GET STARTED?
+        </UpItem>
+
+        <UpItem>
+          <Link
+            className="bg-[#F8F8F8] px-10 py-3 text-2xl inline-block whitespace-nowrap transition-transform duration-150 ease-out hover:scale-105 active:scale-95"
+            href="/get-started"
+            scroll={true}
+          >
+            Start here
+          </Link>
+        </UpItem>
+      </StaggerInView>
+    </section>
   );
 }
