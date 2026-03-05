@@ -16,7 +16,7 @@ const NavBar: FC = () => {
 
   return (
     <div
-      className={`${lumanosimo.className} bg-[#E5DDCB] sticky top-0 z-50 w-full px-12 py-6 md:text-xl font-light`}
+      className={`${lumanosimo.className} bg-[#E5DDCB] sticky top-0 z-50 w-full px-6 md:px-12 py-6 md:text-xl font-light`}
     >
       <nav className="flex items-center justify-between">
         <div className="hidden md:flex md:justify-between w-full">
@@ -34,9 +34,9 @@ const NavBar: FC = () => {
           </div>
         </div>
         <div className="md:hidden flex justify-between w-full gap-7">
-          <Link href="/" className="flex flex-col items-start gap-1 cursor-pointer" scroll={true}>
-            <div className="text-[27px] leading-8"> BRIANNA VANCE</div>
-            <div className="text-[27px] leading-8">WEB STUDIO </div>
+          <Link href="/" className="flex flex-col items-start cursor-pointer" scroll={true}>
+            <div className="text-[22px] leading-8"> BRIANNA VANCE</div>
+            <div className="text-[22px] leading-8">WEB STUDIO </div>
           </Link>
           <button
             onClick={() => setOpen(!open)}
@@ -54,7 +54,7 @@ const NavBar: FC = () => {
                 className="fixed inset-0 z-40"
                 onClick={() => setOpen(false)}
               />
-              <div className="absolute right-6 mt-2 w-40 bg-dark-brown rounded-lg shadow-lg z-50">
+              <div className="absolute top-20 right-6 mt-2 w-40 bg-dark-brown rounded-lg shadow-lg z-50 bg-[#E5DDCB]">
                 <ul className="flex flex-col items-start p-4 gap-4">
                   <li key="/">
                     <Link

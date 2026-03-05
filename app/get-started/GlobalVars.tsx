@@ -100,7 +100,7 @@ export function Checkbox({
         className="sr-only"
       />
 
-      <span className="text-xl">{label}</span>
+      <span className="text-lg md:text-xl">{label}</span>
     </label>
 
   );
@@ -131,7 +131,7 @@ export function RadioGroup<T extends string>({
             onChange={() => onChange(opt.value)}
             className="sr-only"
           />
-          <span className="text-xl">{opt.label}</span>
+          <span className="text-lg md:text-xl">{opt.label}</span>
         </label>
       ))}
     </div>

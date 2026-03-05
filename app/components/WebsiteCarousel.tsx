@@ -204,16 +204,7 @@ export function WebsiteCarousel({
             >
               <div className="relative rounded-xl overflow-hidden">
                 {it.kind === "video" ? (
-                  <video
-                    className="block w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    poster={it.poster}
-                  >
-                    <source src={it.src} type={it.type ?? "video/mp4"} />
-                  </video>
+                  <VideoSlide item={it} active={active} />
                 ) : (
                   <Image
                     src={it.src}
@@ -246,5 +237,42 @@ export function WebsiteCarousel({
         })}
       </div> */}
     </div>
+  );
+}
+
+function VideoSlide({
+  item,
+  active,
+}: {
+  item: Extract<CarouselItem, { kind: "video" }>;
+  active: boolean;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (active) {
+      el.load(); // reload src after it was removed
+      el.play().catch(() => { });
+    } else {
+      el.pause();
+      el.removeAttribute("src"); // unload the video entirely
+      el.load();                 // reset to poster
+    }
+  }, [active]);
+
+  return (
+    <video
+      ref={ref}
+      className="block w-full h-full object-cover"
+      muted
+      loop
+      playsInline
+      poster={item.poster}
+      src={active ? item.src : undefined} // don't load src at all when inactive
+    >
+      {active && <source src={item.src} type={item.type ?? "video/mp4"} />}
+    </video>
   );
 }

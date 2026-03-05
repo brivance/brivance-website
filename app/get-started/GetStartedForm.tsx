@@ -2,9 +2,9 @@
 
 import { Checkbox, FormData, RadioGroup, SummaryRow, cx, initialData, isEmail } from "./GlobalVars";
 import { UpItem, makeContainer } from "@/components/FramerMotion";
+import { useMemo, useState } from "react";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 export default function GetStartedForm({ step, setStep, steps }: { step: number; setStep: React.Dispatch<React.SetStateAction<number>>; steps: { title: string }[] }) {
   const [data, setData] = useState<FormData>(initialData);
@@ -14,9 +14,17 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
   });
 
   // Count only the first 6 steps (0..5)
-  const countedSteps = steps.length - 2; // exclude Contact and Review
-  const countedStepIndex = Math.min(step, countedSteps - 1); // clamp review to last counted
-  const progressPct = Math.round(((countedStepIndex + 1) / countedSteps) * 100);
+  const progressPct = useMemo(() => {
+    const countedSteps = steps.length - 2;
+    let completed = 0;
+    if (data.need) completed++;
+    if (data.pages) completed++;
+    if (data.business && (data.business !== "other" || data.businessOther.trim().length >= 2)) completed++;
+    if (Object.values(data.features).some(Boolean)) completed++;
+    if (data.contentReady) completed++;
+    if (data.name.trim().length > 0 && isEmail(data.email)) completed++;
+    return Math.round((completed / countedSteps) * 100);
+  }, [data, steps.length]);
   function update<K extends keyof FormData>(key: K, value: FormData[K]) {
     setData((prev) => ({ ...prev, [key]: value }));
     setStatus({ type: "idle" });
@@ -113,7 +121,7 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
     }
     if (s === 4 && !data.contentReady) return "Please select a content readiness option.";
     if (s === 5) {
-      if (data.name.trim().length < 2) return "Please enter your name.";
+      if (data.name.trim().length < 1) return "Please enter your name.";
       if (!isEmail(data.email)) return "Please enter a valid email.";
     }
     return null;
@@ -240,7 +248,10 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
               {step === steps.length - 1 || step === steps.length - 2 ? "Questions Completed" : <></>}
             </div>
             <div className="h-3.5 w-full rounded-full bg-neutral-100/70 overflow-hidden">
-              <div className="h-full bg-green" style={{ width: `${progressPct}%` }} />
+              <div
+                className="h-full bg-green transition-all duration-500 ease-out"
+                style={{ width: `${progressPct}%` }}
+              />
             </div>
             <div className="mt-1 text-right text-xs text-neutral-500">{progressPct}%</div>
           </div>
@@ -365,7 +376,7 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
           )}
 
           {step === 5 && (
-            <div className="space-y-4 text-lg">
+            <div className="space-y-4 text-base md:text-lg">
               {/* Honeypot field */}
               {/* <div className="hidden">
               <label className="text-neutral-600">Website</label>
@@ -376,7 +387,7 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
                 placeholder="do not fill"
               />
             </div> */}
-              <div className="text-sm text-neutral-500">
+              <div className="text-neutral-500 text-center">
                 Please provide your contact information so I can reach out with a quote. I will review your answers and get back to you within 1-2 business days. Looking forward to connecting!
               </div>
 
@@ -408,7 +419,7 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
           )}
 
           {step === 6 && (
-            <div className="space-y-4 text-lg">
+            <div className="space-y-4 md:text-lg">
               <SummaryRow label="What you need" value={a.need} />
               <SummaryRow label="Page range" value={a.pages} />
               <SummaryRow label="Business type" value={a.business} />

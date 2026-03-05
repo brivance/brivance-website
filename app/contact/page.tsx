@@ -63,22 +63,22 @@ export default function ContactForm() {
   }
 
   return (
-    <motion.div className="flex flex-col items-center min-h-screen pt-20" variants={makeContainer()}
+    <motion.div className="flex flex-col items-center min-h-screen pt-10 md:pt-20 mb-30" variants={makeContainer()}
       initial="hidden"
       animate="show">
-      <motion.div className={`text-6xl mb-10`}><UpItem>GET IN TOUCH</UpItem></motion.div>
-      <div className="relative h-[400px] bg-[#A9C7E2]/70 py-10">
-        <div className="grid grid-cols-2 gap-10 w-3/4 mx-auto">
-          <div className={`flex flex-col gap-2 text-2xl`}>
+      <motion.div className={`text-5xl md:text-6xl mb-10`}><UpItem>GET IN TOUCH</UpItem></motion.div>
+      <div className="relative bg-[#A9C7E2]/70 md:py-15 pt-5 pb-15">
+        <div className="flex flex-col gap-8 md:grid md:grid-cols-2 md:gap-10 w-4/5 md:w-3/4 mx-auto">
+          <div className={`flex flex-col gap-2 text-lg md:text-2xl`}>
             <div className={`${lumanosimo.className} mb-4`}><UpItem>Leave a message and I&apos;ll get back to you as soon as possible.</UpItem></div>
             <div className={`${lumanosimo.className} mb-4 w-9/10`}><UpItem>If you are interested in pricing, please fill out <a href="/get-started" className="text-red-900">this form</a>.</UpItem></div>
             <UpItem>
-              <div className={`flex gap-5 mt-10`}>
+              <div className={`flex gap-3 md:gap-5 md:mt-10`}>
                 <Link href="https://www.linkedin.com/in/brivance" target="_blank" rel="noopener noreferrer">
-                  <FaLinkedin className="w-20 h-20 transition-colors" />
+                  <FaLinkedin className="w-10 h-10 md:w-20 md:h-20 transition-colors" />
                 </Link>
                 <Link href="https://www.github.com/brivance" target="_blank" rel="noopener noreferrer">
-                  <FaGithub className="w-20 h-20 transition-colors" />
+                  <FaGithub className="w-10 h-10 md:w-20 md:h-20 transition-colors" />
                 </Link>
               </div>
             </UpItem>
@@ -95,6 +95,7 @@ export default function ContactForm() {
                   name="name"
                   placeholder="First and Last Name"
                   required
+                  className="w-full focus:outline-none focus:ring-0"
                 />
               </UpItem>
               <UpItem className="border-b p-2 rounded focus:outline-none focus:ring-0">
@@ -103,13 +104,15 @@ export default function ContactForm() {
                   name="email"
                   placeholder="Email"
                   required
+                  className="w-full focus:outline-none focus:ring-0"
                 />
               </UpItem>
-              <UpItem className="border-b p-2 rounded min-h-[100px] focus:outline-none focus:ring-0">
+              <UpItem className="border-b p-2 rounded min-h-[100px]">
                 <textarea
                   name="message"
                   placeholder="Message"
                   required
+                  className="w-full min-h-[100px] focus:outline-none focus:ring-0"
                 />
               </UpItem>
 
@@ -119,7 +122,7 @@ export default function ContactForm() {
               <motion.button
                 type="submit"
                 disabled={status === "loading"}
-                className="text-xl -bottom-10 right-0 text-start px-4 absolute w-1/3 bg-whitish text-black py-4 transition-transform duration-150 ease-out
+                className="text-xl -bottom-10 right-0 text-start px-4 absolute w-1/2 md:w-1/3 bg-whitish text-black py-4 transition-transform duration-150 ease-out
     hover:scale-105 active:scale-95 mt-8 cursor-pointer"
                 {...textInAfterRightPanel}
                 transition={textInAfterPanelTransition}

@@ -6,6 +6,8 @@ import { Afacad, Inconsolata } from 'next/font/google';
 
 import NavBar from "./components/NavBar";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const afacad = Afacad({
   subsets: ['latin'],
@@ -19,6 +21,16 @@ const inconsolata = Inconsolata({
   variable: '--font-inconsolata',      // sets a CSS variable
 });
 
+export function ScrollToTop() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +41,7 @@ export default function RootLayout({
       <body
         className={`${inconsolata.className} text-black`}
       >
+        <ScrollToTop />
         <NavBar />
         <Toaster
           position="top-center"

@@ -1,7 +1,6 @@
-"use client";
-
 import { ReactNode, useMemo } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { easeOut, motion, useReducedMotion } from "framer-motion";
+import { panelInRight, panelInRightTransition, textInAfterPanelTransition, textInAfterRightPanel } from "@/components/FramerMotion";
 
 import Image from "next/image";
 import { Lumanosimo } from "next/font/google";
@@ -10,8 +9,6 @@ const lumanosimo = Lumanosimo({
   subsets: ["latin"],
   weight: ["400"],
 });
-
-const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export function PortfolioSection({
   title,
@@ -73,117 +70,93 @@ export function PortfolioSection({
       whileInView="show"
       viewport={{ once: true, amount: 0.35 }}
     >
-      {/* Header */}
-      <div className={`${lumanosimo.className} flex flex-col justify-end pt-20 w-5/7 mx-auto gap-6 mb-4`}>
-        <motion.h1 variants={item} className="text-4xl font-bold text-end">
+      <div className={`${lumanosimo.className} pt-10 w-5/7 mx-auto gap-6 text-center`}>
+        <motion.h1 variants={item} className={`text-2xl md:text-4xl font-bold`}>
           {title}
         </motion.h1>
-
-        {link && (
-          <motion.a
-            variants={item}
-            href={link}
-            className="bg-whitish py-2 px-8 w-fit text-2xl self-end -mb-14 select-none"
-            whileHover={
-              reduceMotion
-                ? undefined
-                : { y: -2, scale: 1.02, boxShadow: "0px 18px 40px rgba(0,0,0,0.12)" }
-            }
-            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-            transition={{ duration: 0.2, ease: easeOut }}
-          >
-            VISIT
-          </motion.a>
-        )}
       </div>
-
-      {/* Devices row */}
-      <div className="mt-10 flex items-end gap-10 w-5/7 mx-auto justify-center">
-        {/* Laptop */}
+      <div className="flex items-end gap-6 w-full max-w-[1150px] mx-auto justify-center px-4">
+        {/* Laptop — fluid width, locked aspect ratio */}
         <motion.div
           variants={item}
-          className="relative w-[800px] h-[400px]"
+          className="relative w-full"
+          style={{ aspectRatio: "2000 / 1500" }}
           {...deviceHover}
         >
-          <div className="scroll-mask absolute top-[8%] left-[9.5%] w-[82%] h-[100%] overflow-hidden rounded-lg">
+          <div className="scroll-mask absolute top-[12%] left-[9%] w-[82%] h-[67%] overflow-hidden overflow-x-hidden rounded-lg">
             {desktopSrc}
           </div>
-
           <Image
             src="/portfolio/laptop-frame.png"
             alt="Laptop Frame"
-            width={800}
-            height={400}
-            className="relative pointer-events-none"
+            fill
+            className="pointer-events-none object-contain"
           />
-
-          {/* soft sheen */}
-          {!reduceMotion && (
-            <motion.div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[24px]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, ease: easeOut }}
-              style={{
-                background:
-                  "linear-gradient(120deg, rgba(255,255,255,0.00), rgba(255,255,255,0.14), rgba(255,255,255,0.00))",
-                maskImage:
-                  "radial-gradient(120% 90% at 30% 20%, black 0%, transparent 60%)",
-                WebkitMaskImage:
-                  "radial-gradient(120% 90% at 30% 20%, black 0%, transparent 60%)",
-              }}
-            />
-          )}
         </motion.div>
 
-        {/* Phone */}
+        {/* iPhone — scales proportionally alongside laptop */}
         {mobileSrc && (
           <motion.div
             variants={item}
-            className="relative w-[220px] h-[320px] pb-5"
+            className="relative shrink-0 w-[22%] max-w-[220px] min-w-[80px] mb-[5%]"
+            style={{ aspectRatio: "400 / 800" }}
             {...deviceHover}
           >
-            <div className="scroll-mask absolute top-[6%] left-[13%] w-[74%] h-[119%] overflow-hidden rounded-xl">
+            <div className="scroll-mask absolute top-[7%] left-[13%] w-[74%] h-[86%] overflow-hidden overflow-x-hidden rounded-xl">
               {mobileSrc}
             </div>
-
             <Image
               src="/portfolio/iphone-frame.png"
               alt="iPhone Frame"
-              width={220}
-              height={400}
-              className="relative pointer-events-none"
+              fill
+              className="pointer-events-none object-contain"
             />
           </motion.div>
         )}
       </div>
-
-      {/* Description band */}
-      <div className="bg-[#D1C5F3]/50">
+      <div className="bg-[#D1C5F3]/50 -mt-[20%] pt-[15%] mb-30 pb-2">
         <motion.div
-          variants={item}
-          className="text-xl mt-40 mb-50 flex items-start p-10 rounded-lg w-5/7 mx-auto"
-        >
-          <div className="flex flex-col text-start gap-2 text-2xl">
+          variants={item} className="text-xl flex items-start p-10 rounded-lg w-full md:w-5/7 mx-auto h-full">
+          <div className="flex flex-col text-start gap-2 md:text-2xl">
             {Array.isArray(description) ? (
-              description.map((desc, index) => (
+              description.map((desc, index) =>
                 <motion.p
                   key={index}
                   initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
                   whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.8 }}
                   transition={{ duration: 0.45, ease: easeOut, delay: reduceMotion ? 0 : index * 0.04 }}
-                >
-                  ❀ {desc}
-                </motion.p>
-              ))
+                >❀ {desc}</motion.p>
+              )
             ) : (
               description
             )}
           </div>
         </motion.div>
+        {link && (
+          <motion.a
+            href={link}
+            className={`${lumanosimo.className} absolute right-0 md:h-[80px] h-[60px] flex justify-start w-1/3 md:w-1/5 bg-whitish py-2 px-2 md:px-8 text-2xl md:text-3xl select-none items-center -mt-6`}
+            whileHover={
+              reduceMotion
+                ? undefined
+                : { y: -2, scale: 1.02 }
+            }
+            whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+            {...panelInRight}
+            transition={panelInRightTransition}
+          >
+
+            <motion.div
+              {...textInAfterRightPanel}
+              transition={textInAfterPanelTransition}
+            >
+              VISIT
+            </motion.div>
+          </motion.a>
+        )}
       </div>
+
     </motion.section>
   );
 }

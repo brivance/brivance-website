@@ -20,9 +20,32 @@ const afacad = Afacad({
 });
 
 const carouselItems = [
-  { kind: "video", src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/sam-vance-demo.mov", type: "video/mp4" },
-  { kind: "image", src: "/landing-page/washdudes-demo.png", alt: "Wash Dudes", width: 900, height: 700, priority: true },
-  { kind: "video", src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/bb-demo.mp4", type: "video/mp4" },
+  {
+    kind: "video",
+    src: "https://cdn.briannavance.com/brianna-vance-website/portfolio/sam-vance/laptop-demo.mov",
+    poster: "/portfolio/sam-vance/laptop-demo-thumbnail.png",
+    type: "video/mp4"
+  },
+  {
+    kind: "image",
+    src: "/landing-page/washdudes-demo.png",
+    alt: "Wash Dudes",
+    width: 900,
+    height: 700,
+    priority: true
+  },
+  {
+    kind: "video",
+    src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/bb-demo.mp4",
+    poster: "/portfolio/bayonet-battalion/bb-laptop-demo-thumbnail.png",
+    type: "video/mp4"
+  },
+  {
+    kind: "video",
+    src: "https://cdn.briannavance.com/brianna-vance-website/portfolio/greencardai/portfolio-demo.mov",
+    poster: "/portfolio/greencardai/portfolio-demo-thumbnail.png",
+    type: "video/mp4"
+  },
 ] as const;
 
 export default function Home() {
@@ -37,11 +60,11 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="relative w-full min-h-screen">
-      <motion.div className={`relative ${afacad.className} bg-[#E8CCBC] w-full h-[210px] flex flex-col justify-center mt-14 text-6xl`} variants={makeContainer()}
+    <section className="relative w-full min-h-[500px] md:min-h-screen">
+      <motion.div className={`relative ${afacad.className} bg-[#E8CCBC] w-full h-[150px] md:h-[230px] flex flex-col justify-center mt-14 text-3xl md:text-6xl`} variants={makeContainer()}
         initial="hidden"
         animate="show">
-        <motion.div className="absolute top-[3vw] left-[20vw] flex flex-col gap-1 text-center" variants={makeContainer()}>
+        <motion.div className="flex flex-col gap-1 text-center justify-center" variants={makeContainer()}>
           <UpItem>
             <div>YOUR NEXT WEBSITE</div>
           </UpItem>
@@ -51,14 +74,14 @@ function Hero() {
         </motion.div>
         <motion.button
           onClick={() => window.location.href = "/get-started"}
-          className={`${lumanosimo.className} absolute right-0 -bottom-[3vw] w-9/20 h-[80px] bg-whitish flex items-center overflow-hidden transition-transform duration-150 ease-out hover:scale-105 active:scale-100 cursor-pointer`}
+          className={`${lumanosimo.className} absolute right-0 -bottom-[3vw] w-2/5 md:w-7/20 h-[40px] md:h-[80px] bg-whitish flex items-center overflow-hidden transition-transform duration-150 ease-out hover:scale-105 active:scale-100 cursor-pointer`}
           {...panelInRight}
           transition={panelInRightTransition}
         >
           <motion.div
             {...textInAfterRightPanel}
             transition={textInAfterPanelTransition}
-            className="pl-[2vw] text-3xl"
+            className="pl-[2vw] text-lg md:text-3xl"
           >
             Get a quote
           </motion.div>
@@ -89,42 +112,56 @@ function Projects() {
   ];
 
   return (
-    <section className="relative w-full min-h-screen">
-      <motion.div className="absolute flex -top-[3vw] text-5xl w-1/2 bg-[#F8F8F8] text-end justify-end h-[160px] z-3 pr-5"
+    <section className="relative w-full min-h-[550px] md:min-h-screen">
+      <motion.div className="absolute flex -top-[3vw] text-xl md:text-5xl w-1/2 bg-[#F8F8F8] text-end justify-end h-[80px] md:h-[160px] z-3 pr-5"
         {...panelInFromLeftInView}
       >
-        <motion.div className={`${lumanosimo.className} flex justify-end mt-4 mr-4 leading-15`}
+        <motion.div className={`${lumanosimo.className} flex justify-end mt-2 md:mt-4 md:mr-4 md:leading-15`}
           {...textInFromLeftAfterPanelInView}
         >
           About<br />Me
         </motion.div>
       </motion.div>
 
-      <motion.div
-        className="absolute top-20 left-[14vw] z-3"
-        variants={item}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <Image
-          src="/brianna-vance.png"
-          alt=""
-          width={325}
-          height={325}
-          className="object-cover bg-[#D1B4B4]"
-        />
-      </motion.div>
-
-      <div className="absolute top-[6vw] bg-[#E8CCBC] h-[600px] w-full z-2">
+      <div className="flex flex-row items-center justify-center gap-4 md:gap-16 px-4 top-[6vw] bg-[#E8CCBC] w-full z-2 md:pb-10">
+        <motion.div
+          className="hidden md:block z-3"
+          variants={item}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Image
+            src="/brianna-vance.png"
+            alt=""
+            width={325}
+            height={325}
+            className="object-cover bg-[#D1B4B4] w-[150px] sm:w-[325px] h-full"
+          />
+        </motion.div>
         <StaggerInView
-          className="absolute left-[43vw] w-1/2 text-[25px] top-[4vw] flex flex-col gap-8"
+          className="pt-20 md:mt-12 pb-10 w-3/5 md:w-1/2 text-lg md:text-[25px] top-[4vw] flex flex-col gap-4 md:gap-8"
           amount={0.25}
         >
           {lines.map((t) => (
             <UpItem key={t}>{t}</UpItem>
           ))}
         </StaggerInView>
+        <motion.div
+          className="z-3 h-80 md:hidden"
+          variants={item}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Image
+            src="/brianna-vance.png"
+            alt=""
+            width={325}
+            height={325}
+            className="object-cover bg-[#D1B4B4] w-[150px] sm:w-[325px] h-full"
+          />
+        </motion.div>
       </div>
     </section>
   );
@@ -132,15 +169,15 @@ function Projects() {
 
 function Inquire() {
   return (
-    <section className="relative w-full pb-24">
-      <StaggerInView className="mx-[10vw] flex flex-wrap items-center justify-end gap-12" amount={0.45}>
-        <UpItem className={`${lumanosimo.className} text-4xl`}>
+    <section className="relative w-full pb-24 pt-10 md:pt-0">
+      <StaggerInView className="mx-[5%] md:mx-[10vw] flex items-center justify-center md:justify-end flex-wrap gap-4 md:gap-12" amount={0.45}>
+        <UpItem className={`${lumanosimo.className} md:text-4xl text-xl whitespace-nowrap`}>
           READY TO GET STARTED?
         </UpItem>
 
         <UpItem>
           <Link
-            className="bg-[#F8F8F8] px-10 py-3 text-2xl inline-block whitespace-nowrap transition-transform duration-150 ease-out hover:scale-105 active:scale-95"
+            className="bg-[#F8F8F8] px-5 py-2 text-lg md:px-10 md:py-3 md:text-2xl inline-block whitespace-nowrap transition-transform duration-150 ease-out hover:scale-105 active:scale-95"
             href="/get-started"
             scroll={true}
           >
