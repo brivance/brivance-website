@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 import { motion } from "framer-motion";
 
-export default function GetStartedForm({ step, setStep, steps }: { step: number; setStep: React.Dispatch<React.SetStateAction<number>>; steps: { title: string }[] }) {
+export default function GetStartedForm({ step, setStep, steps }: { step: number; setStep: React.Dispatch<React.SetStateAction<number>>; steps: { title: string, question?: string }[] }) {
   const [data, setData] = useState<FormData>(initialData);
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<{ type: "idle" | "error" | "success"; msg?: string }>({
@@ -256,6 +256,15 @@ export default function GetStartedForm({ step, setStep, steps }: { step: number;
             <div className="mt-1 text-right text-xs text-neutral-500">{progressPct}%</div>
           </div>
 
+        </div>
+      </UpItem>
+      <UpItem>
+        <div>
+          {steps[step].question && (
+            <div className="mt-6 text-lg md:text-xl text-center font-bold">
+              {steps[step].question}
+            </div>
+          )}
         </div>
       </UpItem>
 

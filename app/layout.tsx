@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 const afacad = Afacad({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '500', '600'], // choose what you use
   variable: '--font-afacad',
 });
 

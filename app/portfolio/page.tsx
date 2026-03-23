@@ -17,6 +17,7 @@ export default function Portfolio() {
         desktopSrc={DesktopComponentOne}
         mobileSrc={MobileComponentOne}
         description={DescriptionOne}
+        link="https://www.washdudes.net"
       />
       <PortfolioSection
         title="Professional Engineer Portfolio"

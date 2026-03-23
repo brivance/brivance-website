@@ -18,11 +18,11 @@ export default function GetStarted() {
 
   const steps = useMemo(
     () => [
-      { title: "Project type" },
-      { title: "Pages" },
-      { title: "Business" },
-      { title: "Features" },
-      { title: "Content readiness" },
+      { title: "Project type", question: "What type of project are you looking to build?" },
+      { title: "Pages", question: "How many pages will your website have?" },
+      { title: "Business", question: "What type of business do you have?" },
+      { title: "Features", question: "Which features do you need?" },
+      { title: "Content readiness", question: "How much content do you have ready?" },
       { title: "Contact" },
       { title: "Review" },
     ],
