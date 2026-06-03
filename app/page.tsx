@@ -107,7 +107,7 @@ function Hero() {
 
 function Projects() {
   const lines = [
-    "I am just a girl from Idaho, trying to make a living doing what I love.",
+    "I'm a girl from Idaho, trying to make a living doing what I love.",
     "I have a degree in Computer Science with a minor in Mathematics.",
     "Some of my hobbies include rock climbing, playing the piano, and making ice cream.",
     "Just survived the coldest winter of my life in Michigan 🥶 but now I am in Mountain View, California!",
