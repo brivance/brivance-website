@@ -16,12 +16,14 @@ export function PortfolioSection({
   mobileSrc,
   description,
   link,
+  id
 }: {
   title: string;
   desktopSrc: ReactNode;
   mobileSrc?: ReactNode;
   description: string[] | ReactNode;
   link?: string | null;
+  id?: string;
 }) {
   const reduceMotion = useReducedMotion();
 
@@ -64,7 +66,8 @@ export function PortfolioSection({
 
   return (
     <motion.section
-      className="z-10 w-full"
+      id={id}
+      className="z-10 w-full scroll-mt-24"
       variants={container}
       initial="hidden"
       whileInView="show"

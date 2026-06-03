@@ -6,7 +6,7 @@ import fs from "fs";
 import mime from "mime-types";
 import path from "path";
 
-// node upload.ts ./public/sam-inventions-short.mp4 sam-vance-website/sam-inventions-short.mp4
+// node upload.ts ./public/sam-inventions-short.mp4 sam-vance-website/folder-you-need/sam-inventions-short.mp4
 
 // Load from .env
 const { R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET } =
@@ -57,7 +57,6 @@ async function upload(
   }
 }
 
-// Example usage: node upload.ts ./poster.png clientA/poster.png
 const [, , localPath, remoteKey] = process.argv;
 if (!localPath) {
   console.error("Usage: node upload.ts <local-file> [remote-key]");

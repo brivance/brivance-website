@@ -22,13 +22,15 @@ const afacad = Afacad({
 const carouselItems = [
   {
     kind: "video",
-    src: "https://cdn.briannavance.com/brianna-vance-website/portfolio/sam-vance/laptop-demo.mov",
+    src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/sam-vance-laptop-demo.mov",
+    link: "/portfolio#samvance",
     poster: "/portfolio/sam-vance/laptop-demo-thumbnail.png",
     type: "video/mp4"
   },
   {
     kind: "image",
-    src: "/landing-page/washdudes-demo.png",
+    src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/washdudes.png",
+    link: "/portfolio#washdudes",
     alt: "Wash Dudes",
     width: 900,
     height: 700,
@@ -37,12 +39,14 @@ const carouselItems = [
   {
     kind: "video",
     src: "https://cdn.briannavance.com/brianna-vance-website/landing-page/bb-demo.mp4",
+    link: "/portfolio#bayonetbattalion",
     poster: "/portfolio/bayonet-battalion/bb-laptop-demo-thumbnail.png",
     type: "video/mp4"
   },
   {
     kind: "video",
     src: "https://cdn.briannavance.com/brianna-vance-website/portfolio/greencardai/portfolio-demo.mov",
+    link: "/portfolio#greencardai",
     poster: "/portfolio/greencardai/portfolio-demo-thumbnail.png",
     type: "video/mp4"
   },
@@ -106,9 +110,8 @@ function Projects() {
     "I am just a girl from Idaho, trying to make a living doing what I love.",
     "I have a degree in Computer Science with a minor in Mathematics.",
     "Some of my hobbies include rock climbing, playing the piano, and making ice cream.",
-    "Currently in Michigan, I’m trying to survive the coldest winter of my life. 🥶",
-    "I’ve worked full-time for companies as a web developer, but my heart lies in freelancing.",
-    "As my client, you are the priority.",
+    "Just survived the coldest winter of my life in Michigan 🥶 but now I am in Mountain View, California!",
+    "I have experience in data science/machine learning and AI, backend and frontend web development and web design- I love it all!!",
   ];
 
   return (

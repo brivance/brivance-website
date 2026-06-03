@@ -2,6 +2,7 @@
 
 import { FC, useState } from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { Lumanosimo } from 'next/font/google';
 
@@ -16,11 +17,21 @@ const NavBar: FC = () => {
 
   return (
     <div
-      className={`${lumanosimo.className} bg-[#E5DDCB] sticky top-0 z-50 w-full px-6 md:px-12 py-6 md:text-xl font-light`}
+      className={`${lumanosimo.className} bg-[#E5DDCB] sticky top-0 z-50 w-full px-6 md:px-12 py-3 md:py-6 md:text-xl font-light`}
     >
       <nav className="flex items-center justify-between">
         <div className="hidden md:flex md:justify-between w-full">
-          <Link href="/" className="text-5xl"> BRIANNA VANCE WEB STUDIO </Link>
+          <Link
+            href="/"
+            className="text-5xl -mt-4 -ml-7"
+          >
+            <Image
+              src="/brianna_vance_web_studio.png"
+              width={150}
+              height={150}
+              alt="BRIANNA VANCE WEB STUDIO"
+            />
+          </Link>
           <div className="flex justify-end gap-8">
             <Link href="/">
               home
@@ -34,9 +45,16 @@ const NavBar: FC = () => {
           </div>
         </div>
         <div className="md:hidden flex justify-between w-full gap-7">
-          <Link href="/" className="flex flex-col items-start cursor-pointer" scroll={true}>
-            <div className="text-[22px] leading-8"> BRIANNA VANCE</div>
-            <div className="text-[22px] leading-8">WEB STUDIO </div>
+          <Link
+            href="/"
+            className="text-5xl"
+          >
+            <Image
+              src="/brianna_vance_web_studio.png"
+              width={125}
+              height={125}
+              alt="BRIANNA VANCE WEB STUDIO"
+            />
           </Link>
           <button
             onClick={() => setOpen(!open)}

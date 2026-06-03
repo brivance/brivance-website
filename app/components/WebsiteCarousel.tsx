@@ -4,9 +4,11 @@ import { motion, useAnimation } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import Image from "next/image";
+import Link from "next/link";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 type CarouselItem =
-  | { kind: "video"; src: string; type?: string; poster?: string }
+  | { kind: "video"; src: string; type?: string; poster?: string; link?: string }
   | {
     kind: "image";
     src: string;
@@ -14,6 +16,7 @@ type CarouselItem =
     width: number;
     height: number;
     priority?: boolean;
+    link?: string;
   };
 
 function useInterval(callback: () => void, delay: number | null) {
@@ -100,6 +103,9 @@ export function WebsiteCarousel({
     setIdx((i) => i + 1);
   }, paused ? null : intervalMs);
 
+  const goPrevious = () => setIdx((i) => i - 1);
+  const goNext = () => setIdx((i) => i + 1);
+
   // Animate on idx change; also perform the “seamless snap” when crossing boundaries.
   useEffect(() => {
     let cancelled = false;
@@ -156,6 +162,8 @@ export function WebsiteCarousel({
         {tripled.map((it, i) => {
           const active = i === idx;
           const neighbor = i === idx - 1 || i === idx + 1;
+          const linkLabel =
+            it.kind === "image" ? `View ${it.alt}` : "View portfolio project";
 
           // Intro: center first, neighbors slightly after
           const introOpacity = active ? 1 : neighbor ? 0.85 : 0;
@@ -164,7 +172,7 @@ export function WebsiteCarousel({
           return (
             <motion.div
               key={`${i}-${it.kind}-${(it as CarouselItem).src}`}
-              className="shrink-0"
+              className="shrink-0 relative rounded-lg overflow-hidden "
               style={{
                 width: `clamp(${minSlidePx}px, ${slideVw * 100}vw, ${maxSlidePx}px)`,
               }}
@@ -202,24 +210,48 @@ export function WebsiteCarousel({
                     }
               }
             >
-              <div className="relative rounded-xl overflow-hidden">
-                {it.kind === "video" ? (
-                  <VideoSlide item={it} active={active} />
-                ) : (
-                  <Image
-                    src={it.src}
-                    alt={it.alt}
-                    width={it.width}
-                    height={it.height}
-                    priority={it.priority}
-                    className="block w-full h-full object-cover"
-                  />
-                )}
-              </div>
+              {it.kind === "video" ? (
+                <VideoSlide item={it} active={active} />
+              ) : (
+                <Image
+                  src={it.src}
+                  alt={it.alt}
+                  width={it.width}
+                  height={it.height}
+                  priority={it.priority}
+                  className="pointer-events-none block w-full h-full object-cover"
+                />
+              )}
+              <Link
+                href={it.link || "#"}
+                scroll={false}
+                className="absolute inset-0 z-10 rounded-xl cursor-pointer"
+                aria-label={linkLabel}
+              />
             </motion.div>
           );
         })}
       </motion.div>
+
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-20 flex w-[min(100%,100vw)] items-center justify-between px-3 md:px-6">
+        <button
+          type="button"
+          onClick={goPrevious}
+          aria-label="Previous carousel item"
+          className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/25 text-black/45 shadow-sm backdrop-blur-sm transition hover:bg-white/45 hover:text-black/70 focus:outline-none focus:ring-2 focus:ring-black/20 md:h-12 md:w-12"
+        >
+          <FiChevronLeft aria-hidden="true" className="h-6 w-6 md:h-8 md:w-8" />
+        </button>
+
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next carousel item"
+          className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full bg-white/25 text-black/45 shadow-sm backdrop-blur-sm transition hover:bg-white/45 hover:text-black/70 focus:outline-none focus:ring-2 focus:ring-black/20 md:h-12 md:w-12"
+        >
+          <FiChevronRight aria-hidden="true" className="h-6 w-6 md:h-8 md:w-8" />
+        </button>
+      </div>
 
       {/* Optional dots that map to the logical index (0..N-1) */}
       {/* <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
@@ -265,7 +297,7 @@ function VideoSlide({
   return (
     <video
       ref={ref}
-      className="block w-full h-full object-cover"
+      className="pointer-events-none block w-full h-full object-cover"
       muted
       loop
       playsInline

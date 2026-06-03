@@ -50,7 +50,7 @@ export const DescriptionOne = [
 
 export const MobileComponentTwo: ReactNode =
   <HoverVideoPreview
-    videoSrc="/portfolio/sam-vance/mobile-demo.mov"
+    videoSrc="https://cdn.briannavance.com/brianna-vance-website/portfolio/sam-vance/mobile-demo.mov"
     imageSrc="/portfolio/sam-vance/mobile-demo-thumbnail.png"
     className="absolute top-0 left-0 w-full h-full"
   />;
